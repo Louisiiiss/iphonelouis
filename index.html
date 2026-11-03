@@ -1,0 +1,363 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="fr">\
+<head>\
+<meta charset="UTF-8">\
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\
+<title>T\'e9l\'e9phone de Louis</title>\
+<style>\
+  * \{ margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; \}\
+  body \{\
+    background: #0a0a0a;\
+    display: flex;\
+    justify-content: center;\
+    align-items: center;\
+    min-height: 100vh;\
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;\
+  \}\
+  .phone \{\
+    width: 390px;\
+    height: 844px;\
+    background: #000;\
+    border-radius: 48px;\
+    padding: 10px;\
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);\
+    position: relative;\
+    overflow: hidden;\
+  \}\
+  .screen \{\
+    width: 100%;\
+    height: 100%;\
+    background: #000;\
+    border-radius: 38px;\
+    overflow: hidden;\
+    position: relative;\
+  \}\
+  .status-bar \{\
+    position: absolute;\
+    top: 0; left: 0; right: 0;\
+    height: 50px;\
+    display: flex;\
+    justify-content: space-between;\
+    align-items: center;\
+    padding: 0 26px;\
+    color: white;\
+    font-size: 15px;\
+    font-weight: 600;\
+    z-index: 200;\
+    pointer-events: none;\
+  \}\
+  .status-right \{ display: flex; gap: 5px; align-items: center; \}\
+  .battery \{ width: 22px; height: 11px; border: 1.4px solid white; border-radius: 2.5px; position: relative; \}\
+  .battery::after \{ content: ''; position: absolute; right: -3.5px; top: 2.5px; width: 2px; height: 6px; background: white; border-radius: 0 1px 1px 0; \}\
+  .battery-fill \{ height: 100%; width: 38%; background: #ff3b30; border-radius: 1px; \}\
+\
+  .lock-screen \{\
+    position: absolute; inset: 0;\
+    background: linear-gradient(160deg, #1c1c1e 0%, #2c2c2e 40%, #1c1c1e 100%);\
+    display: flex; flex-direction: column; align-items: center;\
+    justify-content: space-between;\
+    padding: 110px 0 90px;\
+    color: white;\
+    transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);\
+    z-index: 150;\
+  \}\
+  .lock-screen.unlocked \{ transform: translateY(-100%); \}\
+  .lock-time \{ font-size: 86px; font-weight: 200; letter-spacing: -3px; \}\
+  .lock-date \{ font-size: 21px; opacity: 0.85; margin-top: -8px; \}\
+  .swipe-hint \{ font-size: 15px; opacity: 0.55; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; \}\
+\
+  .home \{\
+    position: absolute; inset: 0;\
+    background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200') center/cover no-repeat;\
+  \}\
+  .home::before \{ content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.18); \}\
+  .apps \{\
+    position: absolute;\
+    top: 90px; left: 0; right: 0;\
+    display: grid;\
+    grid-template-columns: repeat(4, 1fr);\
+    gap: 32px 18px;\
+    padding: 0 22px;\
+  \}\
+  .app-icon \{ display: flex; flex-direction: column; align-items: center; gap: 7px; cursor: pointer; \}\
+  .icon-bg \{\
+    width: 62px; height: 62px; border-radius: 15px;\
+    display: flex; align-items: center; justify-content: center;\
+    font-size: 30px;\
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);\
+  \}\
+  .app-icon span \{ color: white; font-size: 12.5px; font-weight: 500; text-shadow: 0 1px 4px rgba(0,0,0,0.8); \}\
+\
+  .app-screen \{\
+    position: absolute; inset: 0;\
+    background: #f2f2f7;\
+    transform: translateY(100%);\
+    transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);\
+    z-index: 100;\
+    display: flex; flex-direction: column;\
+  \}\
+  .app-screen.open \{ transform: translateY(0); \}\
+  .app-header \{\
+    background: rgba(249,249,249,0.94);\
+    backdrop-filter: blur(25px);\
+    padding: 58px 16px 14px;\
+    display: flex; align-items: center; gap: 10px;\
+    border-bottom: 0.5px solid rgba(0,0,0,0.1);\
+  \}\
+  .back-btn \{ font-size: 17px; color: #007aff; cursor: pointer; font-weight: 500; \}\
+  .app-title \{ font-size: 17px; font-weight: 600; \}\
+  .app-content \{ flex: 1; overflow-y: auto; padding: 12px 16px 30px; \}\
+\
+  .note-item \{\
+    background: white; border-radius: 13px; padding: 16px;\
+    margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);\
+  \}\
+  .note-item h3 \{ font-size: 16.5px; margin-bottom: 6px; font-weight: 600; \}\
+  .note-item p \{ font-size: 14.5px; color: #3c3c43; line-height: 1.4; \}\
+\
+  .msg-row \{ display: flex; margin-bottom: 6px; \}\
+  .message \{ max-width: 78%; padding: 9px 14px; border-radius: 18px; font-size: 15.5px; line-height: 1.35; \}\
+  .message.me \{ background: #007aff; color: white; margin-left: auto; \}\
+  .message.them \{ background: #e9e9eb; color: #000; \}\
+  .sender \{ font-size: 12px; color: #8e8e93; margin: 14px 0 4px 4px; font-weight: 500; \}\
+\
+  .spotify-app \{ background: #121212; color: white; \}\
+  .track \{\
+    display: flex; align-items: center; gap: 14px;\
+    padding: 12px 8px; border-radius: 8px; margin-bottom: 2px;\
+  \}\
+  .track:hover \{ background: #282828; \}\
+  .cover \{\
+    width: 52px; height: 52px; border-radius: 4px;\
+    background: #333; flex-shrink: 0;\
+    display: flex; align-items: center; justify-content: center;\
+    font-size: 20px;\
+  \}\
+  .track-info .title \{ font-weight: 600; font-size: 15.5px; \}\
+  .track-info .artist \{ font-size: 13.5px; opacity: 0.65; margin-top: 2px; \}\
+\
+  .gallery-grid \{\
+    display: grid;\
+    grid-template-columns: 1fr 1fr;\
+    gap: 6px;\
+  \}\
+  .gallery-grid img \{\
+    width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px;\
+  \}\
+</style>\
+</head>\
+<body>\
+\
+<div class="phone">\
+  <div class="screen">\
+    <div class="status-bar">\
+      <span id="time">18:09</span>\
+      <div class="status-right">\
+        <span>5G</span>\
+        <div class="battery"><div class="battery-fill"></div></div>\
+      </div>\
+    </div>\
+\
+    <div class="lock-screen" id="lockScreen">\
+      <div>\
+        <div class="lock-time" id="lockTime">18:09</div>\
+        <div class="lock-date" id="lockDate">Mardi 3 novembre</div>\
+      </div>\
+      <div class="swipe-hint" onclick="unlock()">\
+        <div style="font-size: 22px">\uc0\u8963 </div>\
+        Balayez vers le haut pour ouvrir\
+      </div>\
+    </div>\
+\
+    <div class="home">\
+      <div class="apps">\
+        <div class="app-icon" onclick="openApp('notes')">\
+          <div class="icon-bg" style="background:linear-gradient(145deg,#ffd60a,#ff9f0a);">\uc0\u55357 \u56541 </div>\
+          <span>Notes</span>\
+        </div>\
+        <div class="app-icon" onclick="openApp('gallery')">\
+          <div class="icon-bg" style="background:linear-gradient(145deg,#ff375f,#ff2d55);">\uc0\u55357 \u56764 \u65039 </div>\
+          <span>Galerie</span>\
+        </div>\
+        <div class="app-icon" onclick="openApp('messages')">\
+          <div class="icon-bg" style="background:linear-gradient(145deg,#30d158,#34c759);">\uc0\u55357 \u56492 </div>\
+          <span>Messages</span>\
+        </div>\
+        <div class="app-icon" onclick="openApp('spotify')">\
+          <div class="icon-bg" style="background:#1db954;">\uc0\u55356 \u57269 </div>\
+          <span>Spotify</span>\
+        </div>\
+      </div>\
+    </div>\
+\
+    <!-- NOTES -->\
+    <div class="app-screen" id="notes">\
+      <div class="app-header">\
+        <span class="back-btn" onclick="closeApp()">\'8b Notes</span>\
+        <span class="app-title">Notes</span>\
+      </div>\
+      <div class="app-content">\
+        <div class="note-item">\
+          <h3>don't Forget</h3>\
+          <p>\
+            11/5 date with Lola<br>\
+            11/8 soir\'e9e with In\'e8s<br>\
+            11/12 date with Chlo\'e9<br>\
+            11/15 caf\'e9 with L\'e9a<br>\
+            11/19 dinner with Manon<br>\
+            11/23 soir with Camille\
+          </p>\
+        </div>\
+        <div class="note-item">\
+          <h3>To-do pro</h3>\
+          <p>Finaliser le devis client \'95 Relancer facture \'95 Appeler partenaire</p>\
+        </div>\
+      </div>\
+    </div>\
+\
+    <!-- GALERIE -->\
+    <div class="app-screen" id="gallery">\
+      <div class="app-header">\
+        <span class="back-btn" onclick="closeApp()">\'8b Galerie</span>\
+        <span class="app-title">Galerie</span>\
+      </div>\
+      <div class="app-content">\
+        <div class="gallery-grid">\
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600" alt="Bali">\
+          <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600" alt="Temple">\
+          <img src="https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?w=600" alt="Thailand">\
+          <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600" alt="Japan">\
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600" alt="Mountains">\
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600" alt="Beach">\
+        </div>\
+      </div>\
+    </div>\
+\
+    <!-- MESSAGES -->\
+    <div class="app-screen" id="messages">\
+      <div class="app-header">\
+        <span class="back-btn" onclick="closeApp()">\'8b Messages</span>\
+        <span class="app-title">Messages</span>\
+      </div>\
+      <div class="app-content">\
+        <div class="sender">Girlfriend \uc0\u10084 \u65039 </div>\
+        <div class="msg-row"><div class="message them">Tu me manques trop\'85</div></div>\
+        <div class="msg-row"><div class="message them">Je t\'92aime fort, reviens vite \uc0\u10084 \u65039 </div></div>\
+        <div class="msg-row"><div class="message me">Toi aussi tu me manques. Demain soir ?</div></div>\
+        <div class="msg-row"><div class="message them">Ouiiii j\'92ai trop h\'e2te \uc0\u55357 \u56856 </div></div>\
+\
+        <div class="sender">Lola</div>\
+        <div class="msg-row"><div class="message them">C\'92\'e9tait trop bien hier soir\'85</div></div>\
+        <div class="msg-row"><div class="message them">H\'e2te de se revoir \uc0\u55357 \u56847 </div></div>\
+        <div class="msg-row"><div class="message me">Moi aussi, on remet \'e7a bient\'f4t</div></div>\
+\
+        <div class="sender">In\'e8s</div>\
+        <div class="msg-row"><div class="message them">T\'92\'e9tais vraiment trop bien</div></div>\
+        <div class="msg-row"><div class="message them">On se refait une soir\'e9e ?</div></div>\
+\
+        <div class="sender">Ex</div>\
+        <div class="msg-row"><div class="message them">J\'92arr\'eate pas de penser \'e0 nous\'85</div></div>\
+        <div class="msg-row"><div class="message them">On pourrait recommencer, non ?</div></div>\
+        <div class="msg-row"><div class="message me">On en a d\'e9j\'e0 parl\'e9\'85</div></div>\
+        <div class="msg-row"><div class="message them">Juste une derni\'e8re chance s\'92il te pla\'eet</div></div>\
+\
+        <div class="sender">Chlo\'e9</div>\
+        <div class="msg-row"><div class="message them">La soir\'e9e d\'92hier c\'92\'e9tait incroyable</div></div>\
+        <div class="msg-row"><div class="message them">H\'e2te de te revoir \uc0\u55357 \u56613 </div></div>\
+      </div>\
+    </div>\
+\
+    <!-- SPOTIFY -->\
+    <div class="app-screen" id="spotify">\
+      <div class="app-header" style="background:#121212; color:white; border:none;">\
+        <span class="back-btn" style="color:white" onclick="closeApp()">\'8b</span>\
+        <span class="app-title">Spotify</span>\
+      </div>\
+      <div class="app-content spotify-app">\
+        <div class="track">\
+          <div class="cover" style="background:#1a1a1a;">\uc0\u9200 </div>\
+          <div class="track-info">\
+            <div class="title">Time</div>\
+            <div class="artist">Pink Floyd</div>\
+          </div>\
+        </div>\
+        <div class="track">\
+          <div class="cover" style="background:#222;">\uc0\u55356 \u57273 </div>\
+          <div class="track-info">\
+            <div class="title">No Goodbye</div>\
+            <div class="artist">Paul Kalkbrenner</div>\
+          </div>\
+        </div>\
+        <div class="track">\
+          <div class="cover" style="background:#1e1e1e;">\uc0\u55357 \u56438 </div>\
+          <div class="track-info">\
+            <div class="title">Children</div>\
+            <div class="artist">Robert Miles</div>\
+          </div>\
+        </div>\
+        <div class="track">\
+          <div class="cover" style="background:#2a2a2a;">\uc0\u55356 \u57093 </div>\
+          <div class="track-info">\
+            <div class="title">Innerbloom</div>\
+            <div class="artist">R\'dcF\'dcS DU SOL</div>\
+          </div>\
+        </div>\
+        <div class="track">\
+          <div class="cover" style="background:#181818;">\uc0\u55357 \u56628 </div>\
+          <div class="track-info">\
+            <div class="title">Red Sky</div>\
+            <div class="artist">Skavinski</div>\
+          </div>\
+        </div>\
+        <div class="track">\
+          <div class="cover" style="background:#252525;">\uc0\u55358 \u56796 </div>\
+          <div class="track-info">\
+            <div class="title">The Siren</div>\
+            <div class="artist">Systemics</div>\
+          </div>\
+        </div>\
+        <div class="track">\
+          <div class="cover" style="background:#1c1c1c;">\uc0\u55357 \u56468 </div>\
+          <div class="track-info">\
+            <div class="title">Aimer sans Amour</div>\
+            <div class="artist">Guts</div>\
+          </div>\
+        </div>\
+      </div>\
+    </div>\
+  </div>\
+</div>\
+\
+<script>\
+function updateTime() \{\
+  const now = new Date();\
+  const time = now.toLocaleTimeString('fr-FR', \{hour:'2-digit', minute:'2-digit'\});\
+  const options = \{weekday:'long', day:'numeric', month:'long'\};\
+  let date = now.toLocaleDateString('fr-FR', options);\
+  date = date.charAt(0).toUpperCase() + date.slice(1);\
+  document.getElementById('time').textContent = time;\
+  document.getElementById('lockTime').textContent = time;\
+  document.getElementById('lockDate').textContent = date;\
+\}\
+setInterval(updateTime, 1000);\
+updateTime();\
+\
+function unlock() \{\
+  document.getElementById('lockScreen').classList.add('unlocked');\
+\}\
+function openApp(id) \{\
+  document.getElementById(id).classList.add('open');\
+\}\
+function closeApp() \{\
+  document.querySelectorAll('.app-screen').forEach(el => el.classList.remove('open'));\
+\}\
+</script>\
+</body>\
+</html>}
