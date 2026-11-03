@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Téléphone de Louis</title>
+<title>Louis's Phone</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body {
@@ -161,11 +161,11 @@
     <div class="lock-screen" id="lockScreen">
       <div>
         <div class="lock-time" id="lockTime">18:09</div>
-        <div class="lock-date" id="lockDate">Mardi 3 novembre</div>
+        <div class="lock-date" id="lockDate">Tuesday, November 3</div>
       </div>
       <div class="swipe-hint" onclick="unlock()">
         <div style="font-size: 22px">⌃</div>
-        Balayez vers le haut pour ouvrir
+        Swipe up to unlock
       </div>
     </div>
 
@@ -177,7 +177,7 @@
         </div>
         <div class="app-icon" onclick="openApp('gallery')">
           <div class="icon-bg" style="background:linear-gradient(145deg,#ff375f,#ff2d55);">🖼️</div>
-          <span>Galerie</span>
+          <span>Photos</span>
         </div>
         <div class="app-icon" onclick="openApp('messages')">
           <div class="icon-bg" style="background:linear-gradient(145deg,#30d158,#34c759);">💬</div>
@@ -201,25 +201,25 @@
           <h3>don't Forget</h3>
           <p>
             11/5 date with Lola<br>
-            11/8 soirée with Inès<br>
+            11/8 night with Inès<br>
             11/12 date with Chloé<br>
-            11/15 café with Léa<br>
+            11/15 coffee with Léa<br>
             11/19 dinner with Manon<br>
-            11/23 soir with Camille
+            11/23 night with Camille
           </p>
         </div>
         <div class="note-item">
-          <h3>To-do pro</h3>
-          <p>Finaliser le devis client • Relancer facture • Appeler partenaire</p>
+          <h3>Work To-do</h3>
+          <p>Finish client quote • Follow up invoice • Call partner</p>
         </div>
       </div>
     </div>
 
-    <!-- GALERIE -->
+    <!-- PHOTOS -->
     <div class="app-screen" id="gallery">
       <div class="app-header">
-        <span class="back-btn" onclick="closeApp()">‹ Galerie</span>
-        <span class="app-title">Galerie</span>
+        <span class="back-btn" onclick="closeApp()">‹ Photos</span>
+        <span class="app-title">Photos</span>
       </div>
       <div class="app-content">
         <div class="gallery-grid">
@@ -241,29 +241,29 @@
       </div>
       <div class="app-content">
         <div class="sender">Girlfriend ❤️</div>
-        <div class="msg-row"><div class="message them">Tu me manques trop…</div></div>
-        <div class="msg-row"><div class="message them">Je t’aime fort, reviens vite ❤️</div></div>
-        <div class="msg-row"><div class="message me">Toi aussi tu me manques. Demain soir ?</div></div>
-        <div class="msg-row"><div class="message them">Ouiiii j’ai trop hâte 😘</div></div>
+        <div class="msg-row"><div class="message them">I miss you so much…</div></div>
+        <div class="msg-row"><div class="message them">I love you, come back soon ❤️</div></div>
+        <div class="msg-row"><div class="message me">I miss you too. Tomorrow night?</div></div>
+        <div class="msg-row"><div class="message them">Yes please, can’t wait 😘</div></div>
 
         <div class="sender">Lola</div>
-        <div class="msg-row"><div class="message them">C’était trop bien hier soir…</div></div>
-        <div class="msg-row"><div class="message them">Hâte de se revoir 😏</div></div>
-        <div class="msg-row"><div class="message me">Moi aussi, on remet ça bientôt</div></div>
+        <div class="msg-row"><div class="message them">Last night was so good…</div></div>
+        <div class="msg-row"><div class="message them">Can’t wait to see you again 😏</div></div>
+        <div class="msg-row"><div class="message me">Same, let’s do it again soon</div></div>
 
         <div class="sender">Inès</div>
-        <div class="msg-row"><div class="message them">T’étais vraiment trop bien</div></div>
-        <div class="msg-row"><div class="message them">On se refait une soirée ?</div></div>
+        <div class="msg-row"><div class="message them">You were really great</div></div>
+        <div class="msg-row"><div class="message them">Wanna go out again?</div></div>
 
         <div class="sender">Ex</div>
-        <div class="msg-row"><div class="message them">J’arrête pas de penser à nous…</div></div>
-        <div class="msg-row"><div class="message them">On pourrait recommencer, non ?</div></div>
-        <div class="msg-row"><div class="message me">On en a déjà parlé…</div></div>
-        <div class="msg-row"><div class="message them">Juste une dernière chance s’il te plaît</div></div>
+        <div class="msg-row"><div class="message them">I can’t stop thinking about us…</div></div>
+        <div class="msg-row"><div class="message them">Maybe we could try again?</div></div>
+        <div class="msg-row"><div class="message me">We already talked about this…</div></div>
+        <div class="msg-row"><div class="message them">Just one last chance please</div></div>
 
         <div class="sender">Chloé</div>
-        <div class="msg-row"><div class="message them">La soirée d’hier c’était incroyable</div></div>
-        <div class="msg-row"><div class="message them">Hâte de te revoir 🔥</div></div>
+        <div class="msg-row"><div class="message them">Last night was amazing</div></div>
+        <div class="msg-row"><div class="message them">Can’t wait to see you again 🔥</div></div>
       </div>
     </div>
 
@@ -331,10 +331,9 @@
 <script>
 function updateTime() {
   const now = new Date();
-  const time = now.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
-  const options = {weekday:'long', day:'numeric', month:'long'};
-  let date = now.toLocaleDateString('fr-FR', options);
-  date = date.charAt(0).toUpperCase() + date.slice(1);
+  const time = now.toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'});
+  const options = {weekday:'long', month:'long', day:'numeric'};
+  let date = now.toLocaleDateString('en-US', options);
   document.getElementById('time').textContent = time;
   document.getElementById('lockTime').textContent = time;
   document.getElementById('lockDate').textContent = date;
